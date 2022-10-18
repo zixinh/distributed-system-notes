@@ -14,4 +14,4 @@ sources:
 #### Clock Synchronization
 - problem: each node's clock might be drifted (because clock is made of quartz) and out of sync with other nodes
 - solution: each node periodically sends requests to NTP server (Network Time Protocol) to sync with most accurate clock
-<img width="1920" alt="Screen Shot 2022-10-17 at 8 22 59 PM" src="https://user-images.githubusercontent.com/28737133/196307272-f736f63e-b286-4ff3-98bb-af0ec3770c22.png">
+<img width="1275" alt="Screen Shot 2022-10-17 at 8 23 04 PM" src="https://user-images.githubusercontent.com/28737133/196307487-4a06b029-9ae8-4f73-a2df-e89b752b929e.png">
