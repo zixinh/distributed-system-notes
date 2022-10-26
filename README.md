@@ -19,3 +19,13 @@ sources:
 <p align="center"> 
 <img width="300" alt="Screen Shot 2022-10-17 at 8 23 04 PM" src="https://user-images.githubusercontent.com/28737133/196307487-4a06b029-9ae8-4f73-a2df-e89b752b929e.png">
 </p>
+
+#### Vector Clock
+- for a system of N nodes, each node has a vector <t1, t2,...tn>, where ti refers to logic timestamp of node i. 
+- benefit: 
+  - each vector corresponds to unique event at unique node because each event is incremented by 1 on node i's timestamp
+  - represents happen-before relationships if V(a) < V(b) because if tk at V(a) < tk at V(b), then it means there is a new event to increment node B's counter from node A (does not mean directly, it just means there is a new event happen from A to B's causal chain)
+  - represents concurrent relationships if V(a) || V(b) which is V(a) !<= V(b) and V(a) !>= V(b), because timestamps are incomparable, some events happened and node A and B is not directly related, so its corresponding counter is not updated
+<p align="center"> 
+<img width="300" alt="Screen Shot 2022-10-26 at 12 06 32 AM" src="https://user-images.githubusercontent.com/28737133/197932236-d618a23e-6ef2-4b66-856f-452bd15ca748.png">
+</p>
