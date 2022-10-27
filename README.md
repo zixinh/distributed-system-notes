@@ -6,7 +6,7 @@ sources:
 
 #### Two General Problems
 - Key is that each general does not know if their last messenger got through (Unreliable link). And once their counterpart sends reply, the counterpart starts to wonder if its reply gets through, and so on -- there is always at least one party who is not sure if their message gets through.
-- Even with multiple rounds of confirmation, still uncertain. For example, A sends confirmation to B, and starts to worry not deliver, if B receive it, and B sends back confirmation, and B worries its delivery, and if A receives it and send back a confirmation, A starts to worry again, and so on.... because this unreliable link, confirmation is always required to confirm the message is delivered, however, once the confirmation itself is unreliable as well that needs another confirmation.
+- Even with multiple rounds of confirmation, still uncertain. For example, after several rounds of confirmations, A sends confirmation to B, and starts to worry not deliver, if B receive it, and B sends back confirmation, and B worries its delivery, and if A receives it and send back a confirmation, A starts to worry again, and so on.... because this unreliable link, confirmation is always required to confirm if the message is delivered, however, the new confirmation itself is unreliable as well that needs another confirmation.
 
 #### LSM-Tree vs B-Tree
 
