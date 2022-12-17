@@ -9,6 +9,7 @@ sources:
   - [vector clock](#vector-clock)
 - replication
   - [state update with retry](#state-update-with-retry)
+  - [tombstone and replica state sync](#tombstone-and-replica-syncing)
 - database
   - [LSM-Tree vs B-Tree](#lsm-tree-vs-b-tree)
   - [SSTable](#sstable)
@@ -48,3 +49,10 @@ sources:
 <p align="center"> 
 <img width="616" alt="Screen Shot 2022-12-17 at 12 06 24 PM" src="https://user-images.githubusercontent.com/28737133/208253182-47b2f7b0-0b85-438f-8fe9-ee6c1cf5d0fd.png">
 </p>
+
+#### tombstone and replica syncing
+- problem: in case of certain network requests fail and one replica is outdated, how to sync across replicas?
+- solution: for each requests, we assigned a timestamp and set desired value with that timestamp in a pair (tombstone), periodically replicas will have a syncing call to compare each value with latest timestamp, if one replica has a value with newer timestamp, then the other replica with older timestamp will sync with the other replica.
+<p align="center">
+<img width="670" alt="Screen Shot 2022-12-17 at 6 38 00 PM" src="https://user-images.githubusercontent.com/28737133/208269893-187edd55-290c-4d73-b53b-10618c8f00b7.png">
+  </p>
