@@ -29,3 +29,10 @@ sources:
 <p align="center"> 
 <img width="300" alt="Screen Shot 2022-10-26 at 12 06 32 AM" src="https://user-images.githubusercontent.com/28737133/197932236-d618a23e-6ef2-4b66-856f-452bd15ca748.png">
 </p>
+
+#### State update with retry
+- problem: because network sometimes may fail, how to prevent duplicated state updates
+- solution: using idempotent function
+<p align="center"> 
+<img width="616" alt="Screen Shot 2022-12-17 at 12 06 24 PM" src="https://user-images.githubusercontent.com/28737133/208253182-47b2f7b0-0b85-438f-8fe9-ee6c1cf5d0fd.png">
+</p>
