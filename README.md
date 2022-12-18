@@ -10,6 +10,7 @@ sources:
 - replication
   - [state update with retry](#state-update-with-retry)
   - [tombstone and replica state sync](#tombstone-and-replica-syncing)
+  - [read and write quorum](#read-and-write-quorum)
 - database
   - [LSM-Tree vs B-Tree](#lsm-tree-vs-b-tree)
   - [SSTable](#sstable)
