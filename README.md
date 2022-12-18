@@ -16,6 +16,11 @@ sources:
 - misc
   - [two general problem](#two-general-problem)
 
+#### read and write quorum
+<p align="center">
+<img width="300" alt="Screen Shot 2022-12-17 at 8 36 02 PM" src="https://user-images.githubusercontent.com/28737133/208273290-d0779f6c-13e4-4b22-97ee-b5475c3290b3.png">
+</p>
+
 #### two general problem
 - Key is that each general does not know if their last messenger got through (Unreliable link). And once their counterpart sends reply, the counterpart starts to wonder if its reply gets through, and so on -- there is always at least one party who is not sure if their message gets through.
 - Even with multiple rounds of confirmation, still uncertain. For example, after several rounds of confirmations, A sends confirmation to B, and starts to worry not deliver, if B receive it, and B sends back confirmation, and B worries its delivery, and if A receives it and send back a confirmation, A starts to worry again, and so on.... `because this unreliable link, confirmation is always required to confirm if the message is delivered, however, the new confirmation itself is unreliable as well that needs another confirmation.`
@@ -47,12 +52,12 @@ sources:
 - problem: because network sometimes may fail, how to prevent duplicated state updates
 - solution: using idempotent function
 <p align="center"> 
-<img width="616" alt="Screen Shot 2022-12-17 at 12 06 24 PM" src="https://user-images.githubusercontent.com/28737133/208253182-47b2f7b0-0b85-438f-8fe9-ee6c1cf5d0fd.png">
+<img width="300" alt="Screen Shot 2022-12-17 at 12 06 24 PM" src="https://user-images.githubusercontent.com/28737133/208253182-47b2f7b0-0b85-438f-8fe9-ee6c1cf5d0fd.png">
 </p>
 
 #### tombstone and replica syncing
 - problem: in case of certain network requests fail and one replica is outdated, how to sync across replicas?
 - solution: for each requests, we assigned a timestamp and set desired value with that timestamp in a pair (tombstone), periodically replicas will have a syncing call to compare each value with latest timestamp, if one replica has a value with newer timestamp, then the other replica with older timestamp will sync with the other replica.
 <p align="center">
-<img width="670" alt="Screen Shot 2022-12-17 at 6 38 00 PM" src="https://user-images.githubusercontent.com/28737133/208269893-187edd55-290c-4d73-b53b-10618c8f00b7.png">
-  </p>
+<img width="300" alt="Screen Shot 2022-12-17 at 6 38 00 PM" src="https://user-images.githubusercontent.com/28737133/208269893-187edd55-290c-4d73-b53b-10618c8f00b7.png">
+</p>
