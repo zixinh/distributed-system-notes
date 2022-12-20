@@ -18,6 +18,8 @@ sources:
   - [two general problem](#two-general-problem)
 
 #### read and write quorum
+- assume a cluster has `n` nodes, to ensure that user always reads the most up to update value of a key `k`, we need to update key `k` on `w` write replicas and user needs to make read requests to `r` replicas on the value of `k` where `w + r > n`.
+- occasionally, read replicas may give wrong value of key `k`, but as each update has a logical timestamp on it, the value with latest logical timestamp is the most up to date value of key `k`.
 <p align="center">
 <img width="300" alt="Screen Shot 2022-12-17 at 8 36 02 PM" src="https://user-images.githubusercontent.com/28737133/208273290-d0779f6c-13e4-4b22-97ee-b5475c3290b3.png">
 </p>
