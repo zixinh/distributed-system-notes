@@ -4,6 +4,10 @@
 - [Distributed Systems By Martin Kelppmann](https://www.youtube.com/playlist?list=PLeKd45zvjcDFUEv_ohr_HdUFe97RItdiB)
 - all over internet
 
+#### guideline
+- read quickly - understand the concept in overall system, no need to understand details 
+- only write notes if I believe it's going to be useful in real world settings
+
 ## index
 - [time](#time)
   - [clock synchronization](#clock-synchronization)
@@ -21,6 +25,9 @@
   - [SSTable & LSM-Tree](#sstable-and-lsm-tree)
   - [B-Tree](#b-tree)
   - [LSM-Tree vs B-Tree](#lsm-tree-vs-b-tree)
+  - [clustered index vs unclustered index](#clustered-index-vs-unclustered-index)
+  - [multi-column index](#multi-column-index)
+  - [full-text search and fuzzy index](#full-text-search-and-fuzzy-index)
 - [misc](#misc)
   - [two general problem](#two-general-problem)
 
@@ -83,8 +90,9 @@
 - compaction/merging: periodically remove outdated key-value pairs across segments
 
 #### SSTable and LSM-Tree
+- SSTable ~ Sorted String Table / LSM-Tree ~ Log-Structured Merge Tree
 - comparing to log-structured database, for each segment, key-values pairs are sorted by key, and host a hash table across all segments with sparse keys, not for every key
-- write: database will host an in-memory tree structure or memtable (why LSM-tree is called), and it will append the new key/value to corrsponding position in the tree, if the tree reaches certain size, database will convert this tree to a SSTable segment, update sparse hash table and create a new empty tree
+- write: database will host an in-memory tree structure or memtable, and it will append the new key/value to corrsponding position in the tree, if the tree reaches certain size, database will convert this tree to a SSTable segment, update sparse hash table and create a new empty tree
 - read: first check in-memory tree, if not there, check hash table, and because keys are sorted, just need to find keys that are closed to target key, and search that area. e.g. hash table has key dad and dog, if target key is deer, then deer's value must be between dad's offset and dog's offset.
 - compaction/merge: basically comparing segments from start to end, because each segment is sorted, merge is much easier
 
@@ -101,6 +109,22 @@
 - both are index to boost read & write, but has some tradeoffs
 - generally B-tree faster for reads, LSM-tree faster for writes
 - practically need to evaluate case by case 
+
+#### clustered index vs unclustered index
+- mainly two ways to store values in index 
+  - clustered index: actual row is stored with key within index
+  - unclustered index: a reference to row is stored with key within index, and actual rows are stored in a file known as *heap file*
+- a hybrid index is called covering index where some info + reference of row is stored with key within index
+
+#### multi-column index
+- one common approach is to transform multi-dimensional data to a one-dimensional data, and feed them into normal index like B-Tree
+  - for example, concatenated index: append multiple columns to a single key and index them using that key
+  - other transformations is ok too e.g. convert GPS coordinates to a space-filling curve
+- more specialized multi-column index for different use case is available e.g. R-tree for spatial indexes
+
+#### full-text search and fuzzy index
+- one common method is to convert keys to a finite state machine over the characters used in the keys e.g. Elastic Search
+- other methods available too using document classification and machine learning
 
 ## misc
 
