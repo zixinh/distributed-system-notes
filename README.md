@@ -98,6 +98,7 @@
 </p>
 
 #### LSM-Tree vs B-Tree
+- both are index to boost read & write, but has some tradeoffs
 - generally B-tree faster for reads, LSM-tree faster for writes
 - practically need to evaluate case by case 
 
